@@ -1,0 +1,46 @@
+﻿<Window x:Class="stock_notify.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:stock_notify"
+ 		DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="300" Topmost="True" ResizeMode="NoResize" Closed="Window_Closed" Closing="Window_Closing">
+
+    <Window.Resources>
+        <DataTemplate x:Key="template_ticks" DataType="local:Tick">
+            <Grid Margin="8,4">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="{Binding Path=code}" FontSize="18"/>
+                <Label Content="{Binding Path=time}" Grid.Row="1" Foreground="#BF000000"/>
+                <Label Content="{Binding Path=lastVol}" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="14"/>
+                <Label Content="{Binding Path=count}" Grid.Row="1" Grid.Column="1" Foreground="#BF000000" HorizontalAlignment="Right"/>
+            </Grid>
+        </DataTemplate>
+
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="listTicks" Margin="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Ticks}" ItemTemplate="{StaticResource template_ticks}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                    <EventSetter Event="Control.MouseDoubleClick" Handler="listTicks_MouseDoubleClick"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <Button x:Name="btnClean" Margin="4" Content="清除" Grid.Row="1" HorizontalAlignment="Right" Width="80" Click="btnClean_Click"/>
+
+    </Grid>
+</Window>

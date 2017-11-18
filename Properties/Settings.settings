@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="stock_notify.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="mqserver" Type="System.String" Scope="User">
+      <Value Profile="(Default)">tcp://127.0.0.1:5556</Value>
+    </Setting>
+    <Setting Name="process" Type="System.String" Scope="User">
+      <Value Profile="(Default)">WMain</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
